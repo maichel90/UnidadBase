@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="UnidadBase" transaction-type="JTA">
+		<jta-data-source>java:/App/UnidadBase</jta-data-source>
+		<class>co.themafia.model.Alertasensor</class>
+		<class>co.themafia.model.Medicamento</class>
+		<class>co.themafia.model.Paciente</class>
+		<class>co.themafia.model.Registrosensor</class>
+		<class>co.themafia.model.Sensor</class>
+		<properties>
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+		</properties>
+	</persistence-unit>
+</persistence>

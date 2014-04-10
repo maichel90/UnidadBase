@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+	<datasource jndi-name="java:/App/UnidadBase" enabled="true"
+		use-java-context="true" jta="false" pool-name="UnidadBase">
+		<connection-url>jdbc:mysql://localhost:3306/unidadBase</connection-url>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver>mysql-5.1.26</driver>
+		<pool>
+			<min-pool-size>2</min-pool-size>
+			<max-pool-size>20</max-pool-size>
+		</pool>
+		<security>
+			<user-name>root</user-name>
+			<password>M1S9l</password>
+		</security>
+	</datasource>
+</datasources>
