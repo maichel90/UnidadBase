@@ -1,11 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
-	HOLA HOLA
-</body> 
+<h:head></h:head>
+<body>
+	<p:dataGrid columns="3" rows="2" var="sensor" value="#{sensorBean.sensores}">
+		<p:panel id="panel" header="Sensor #{sensor.nombreSensor}">
+			<h:outputText id="Salida1" value="Ritmo cardiaco #{sensorBean.valorSensor}"/>  
+	        <h:inputHidden id="Sensor1" value="#{sensorBean.valorSensor}" />  
+	        <p:slider for="Sensor1" display="Salida1" style="width:200px" maxValue="200" minValue="60"  displayTemplate="Ritmo cardiaco {value}"/>
+	        <br/>
+	        <b>Enfermedad:</b><h:outputText value="#{sensor.enfermedad}" />
+	        <br/>
+	        <b>Rango Min:</b><h:outputText value="#{sensor.rangoMin}" />
+	        <br/>
+	        <b>Rango Max:</b><h:outputText value="#{sensor.rangoMax}" />
+	        <br/>
+		</p:panel>
+	</p:dataGrid>
+</body>
 </html>
