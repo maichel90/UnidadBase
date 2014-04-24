@@ -7,14 +7,12 @@
 
 <h:head></h:head>
 <body>
-	<h:form>
-		<p:outputLabel>Identificacion Paciente:</p:outputLabel> 
-		<br/>
-		<br/>
-		<p:inputText value="#{indexBean.identificacion}"/>
-		<br/>
-		<br/>
-		<p:commandButton value="Validar" action="#{indexBean.ValidacionUsuario}" />
-	</h:form>
+	<p:menubar>
+		<p:menuitem value="Configuracion" outcome="configuracion"/>
+		<p:menuitem value="Consulta sensores" outcome="csensores"/>
+		<p:menuitem value="Consulta medicamentos" outcome="cmedicamentos"/>
+		<p:menuitem value="Simulacion" outcome="simulacion"/>
+	</p:menubar>
+	<br/>
 </body>
 </html>

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#xhtml#Sensores.xhtml"
-  PATH="/xhtml/Sensores.xhtml" SHAPE="136,136,50,25" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="configuracion::#xhtml#Configuracion.xhtml"
+    NAME="output1" PATH="/xhtml/Configuracion.xhtml"
+    TARGET="rules:#xhtml#Configuracion.xhtml" TITLE="configuracion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="csensores::#xhtml#ConsultaSensores.xhtml"
+    NAME="output2" PATH="/xhtml/ConsultaSensores.xhtml"
+    TARGET="rules:#xhtml#ConsultaSensores.xhtml" TITLE="csensores" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="sensores:#{indexBean.ValidacionUsuario}:#xhtml#Sensores.xhtml"
-    NAME="output" PATH="/xhtml/Sensores.xhtml"
-    TARGET="rules:#xhtml#Sensores.xhtml"
-    TITLE="#{indexBean.ValidacionUsuario}:sensores" model-entity="JSFProcessItemOutput"/>
+    ID="cmedicamentos::#xhtml#ConsultaMedicamentos.xhtml" NAME="output3"
+    PATH="/xhtml/ConsultaMedicamentos.xhtml"
+    TARGET="rules:#xhtml#ConsultaMedicamentos.xhtml"
+    TITLE="cmedicamentos" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="simulacion::#xhtml#Simulacion.xhtml"
+    NAME="output4" PATH="/xhtml/Simulacion.xhtml"
+    TARGET="rules:#xhtml#Simulacion.xhtml" TITLE="simulacion" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#xhtml#Configuracion.xhtml"
+  PATH="/xhtml/Configuracion.xhtml" SHAPE="256,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#xhtml#ConsultaSensores.xhtml"
+  PATH="/xhtml/ConsultaSensores.xhtml" SHAPE="272,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#xhtml#ConsultaMedicamentos.xhtml"
+  PATH="/xhtml/ConsultaMedicamentos.xhtml" SHAPE="288,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#xhtml#Simulacion.xhtml"
+  PATH="/xhtml/Simulacion.xhtml" SHAPE="32,561,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

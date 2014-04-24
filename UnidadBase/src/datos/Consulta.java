@@ -10,23 +10,23 @@ package datos;
 public class Consulta  implements java.io.Serializable {
     private int codigoError;
 
-    private datos.Medicamento medicamento;
+    private datos.Medicamento[] medicamento;
 
     private java.lang.String mesajeError;
 
     private datos.DatosPaciente paciente;
 
-    private datos.Rango rango;
+    private datos.Rango[] rango;
 
     public Consulta() {
     }
 
     public Consulta(
            int codigoError,
-           datos.Medicamento medicamento,
+           datos.Medicamento[] medicamento,
            java.lang.String mesajeError,
            datos.DatosPaciente paciente,
-           datos.Rango rango) {
+           datos.Rango[] rango) {
            this.codigoError = codigoError;
            this.medicamento = medicamento;
            this.mesajeError = mesajeError;
@@ -60,7 +60,7 @@ public class Consulta  implements java.io.Serializable {
      * 
      * @return medicamento
      */
-    public datos.Medicamento getMedicamento() {
+    public datos.Medicamento[] getMedicamento() {
         return medicamento;
     }
 
@@ -70,8 +70,16 @@ public class Consulta  implements java.io.Serializable {
      * 
      * @param medicamento
      */
-    public void setMedicamento(datos.Medicamento medicamento) {
+    public void setMedicamento(datos.Medicamento[] medicamento) {
         this.medicamento = medicamento;
+    }
+
+    public datos.Medicamento getMedicamento(int i) {
+        return this.medicamento[i];
+    }
+
+    public void setMedicamento(int i, datos.Medicamento _value) {
+        this.medicamento[i] = _value;
     }
 
 
@@ -120,7 +128,7 @@ public class Consulta  implements java.io.Serializable {
      * 
      * @return rango
      */
-    public datos.Rango getRango() {
+    public datos.Rango[] getRango() {
         return rango;
     }
 
@@ -130,8 +138,16 @@ public class Consulta  implements java.io.Serializable {
      * 
      * @param rango
      */
-    public void setRango(datos.Rango rango) {
+    public void setRango(datos.Rango[] rango) {
         this.rango = rango;
+    }
+
+    public datos.Rango getRango(int i) {
+        return this.rango[i];
+    }
+
+    public void setRango(int i, datos.Rango _value) {
+        this.rango[i] = _value;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -149,7 +165,7 @@ public class Consulta  implements java.io.Serializable {
             this.codigoError == other.getCodigoError() &&
             ((this.medicamento==null && other.getMedicamento()==null) || 
              (this.medicamento!=null &&
-              this.medicamento.equals(other.getMedicamento()))) &&
+              java.util.Arrays.equals(this.medicamento, other.getMedicamento()))) &&
             ((this.mesajeError==null && other.getMesajeError()==null) || 
              (this.mesajeError!=null &&
               this.mesajeError.equals(other.getMesajeError()))) &&
@@ -158,7 +174,7 @@ public class Consulta  implements java.io.Serializable {
               this.paciente.equals(other.getPaciente()))) &&
             ((this.rango==null && other.getRango()==null) || 
              (this.rango!=null &&
-              this.rango.equals(other.getRango())));
+              java.util.Arrays.equals(this.rango, other.getRango())));
         __equalsCalc = null;
         return _equals;
     }
@@ -172,7 +188,15 @@ public class Consulta  implements java.io.Serializable {
         int _hashCode = 1;
         _hashCode += getCodigoError();
         if (getMedicamento() != null) {
-            _hashCode += getMedicamento().hashCode();
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getMedicamento());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getMedicamento(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
         if (getMesajeError() != null) {
             _hashCode += getMesajeError().hashCode();
@@ -181,7 +205,15 @@ public class Consulta  implements java.io.Serializable {
             _hashCode += getPaciente().hashCode();
         }
         if (getRango() != null) {
-            _hashCode += getRango().hashCode();
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getRango());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getRango(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -204,7 +236,8 @@ public class Consulta  implements java.io.Serializable {
         elemField.setXmlName(new javax.xml.namespace.QName("", "medicamento"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://datos/", "medicamento"));
         elemField.setMinOccurs(0);
-        elemField.setNillable(false);
+        elemField.setNillable(true);
+        elemField.setMaxOccursUnbounded(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("mesajeError");
@@ -225,7 +258,8 @@ public class Consulta  implements java.io.Serializable {
         elemField.setXmlName(new javax.xml.namespace.QName("", "rango"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://datos/", "rango"));
         elemField.setMinOccurs(0);
-        elemField.setNillable(false);
+        elemField.setNillable(true);
+        elemField.setMaxOccursUnbounded(true);
         typeDesc.addFieldDesc(elemField);
     }
 

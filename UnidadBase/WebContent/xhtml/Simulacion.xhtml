@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<p:menubar>
+		<p:menuitem value="Configuracion" outcome="configuracion"/>
+		<p:menuitem value="Consulta sensores" outcome="csensores"/>
+		<p:menuitem value="Consulta medicamentos" outcome="cmedicamentos"/>
+		<p:menuitem value="Simulacion" outcome="simulacion"/>
+	</p:menubar>
+	<br/>
+	<h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		<p:dataGrid columns="3" var="sensor" value="#{sensorBean.sensores}">
+			<p:panel id="panel" header="Sensor #{sensor.nombreSensor}">
+				<h:outputText id="Salida1" value="Ritmo #{sensorBean.valorSensor}"/>  
+		        <h:inputHidden id="Sensor1" value="#{sensorBean.valorSensor}" />  
+		        <p:slider for="Sensor1" display="Salida1" style="width:200px" maxValue="200" minValue="60"  displayTemplate="Ritmo {value}">
+		        	<p:ajax event="slideEnd" listener="#{sensorBean.onSlideEnd}"/>
+		        	<f:attribute name="chango" value="#{sensor}"/>
+		        </p:slider>
+		        <br/>
+		        <b>Enfermedad:</b><h:outputText value="#{sensor.enfermedad}" />
+		        <br/>
+		        <b>Rango Min:</b><h:outputText value="#{sensor.rangoMin}" />
+		        <br/>
+		        <b>Rango Max:</b><h:outputText value="#{sensor.rangoMax}" />
+		        <br/>
+			</p:panel>
+		</p:dataGrid>
+	</h:form>
+	<form style="display: inline-block; margin: 4px;">
+		<p:panel header="Boton de panico" >
+			<br/>
+			<p:commandButton  value="PANICO!!!" actionListener="#{sensorBean.BotonPanico()}"/>
+		</p:panel>
+	</form>
+	<form style="display: inline-block; margin: 4px;">
+		<p:panel header="Sensor de movimiento" >
+			<p:selectBooleanCheckbox/> Se levanto?
+			<br/>
+			<br/>
+			<p:inputText size="1" />
+			Tiempo fuera de la cama
+		</p:panel>
+	</form>
+</body>
+</html>

@@ -23,6 +23,8 @@ public class Paciente implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
+	
+	private String horaSincronizacion;
 
 	private String identificacion;
 
@@ -122,5 +124,14 @@ public class Paciente implements Serializable {
 
 		return sensor;
 	}
+
+	public String getHoraSincronizacion() {
+		return horaSincronizacion;
+	}
+
+	public void setHoraSincronizacion(String horaSincronizacion) {
+		this.horaSincronizacion = horaSincronizacion;
+	}
+	
 
 }

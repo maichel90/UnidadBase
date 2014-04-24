@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body>
+	<p:menubar>
+		<p:menuitem value="Configuracion" outcome="configuracion"/>
+		<p:menuitem value="Consulta sensores" outcome="csensores"/>
+		<p:menuitem value="Consulta medicamentos" outcome="cmedicamentos"/>
+		<p:menuitem value="Simulacion" outcome="simulacion"/>
+	</p:menubar>
+	<br/>
+	<h:form id="formulario">
+		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		<p:outputLabel>Identificacion Paciente:</p:outputLabel> 
+		<br/>
+		<p:inputText value="#{confBean.identificacion}"/>
+		<br/>
+		<br/>
+		<p:outputLabel>Hora envio registros:</p:outputLabel> 
+		<br/>
+		<p:calendar value="#{confBean.horaSincronizacion}" pattern="HH:mm" timeOnly="true" />
+		<br/>
+		<br/>
+		<p:commandButton value="Validar" actionListener="#{confBean.ValidacionUsuario}" update="formulario"/>
+		<br/>
+		<br/>
+		<p:outputLabel>----------------------------------</p:outputLabel>
+		<br/>
+		<p:outputLabel>Nombres completos : #{confBean.paciente.nombre} #{confBean.paciente.apellido}</p:outputLabel>
+		<br/><br/>
+		<p:outputLabel>Fecha nacimiento: #{confBean.paciente.fechaNacimiento}</p:outputLabel>
+
+</h:form>
+	
+</body> 
+</html>

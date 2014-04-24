@@ -12,6 +12,8 @@ public class RespuetaAlerta  implements java.io.Serializable {
 
     private java.lang.String dosis;
 
+    private java.lang.String idMedicamento;
+
     private java.lang.String medicamento;
 
     private java.lang.String recomendacion;
@@ -24,11 +26,13 @@ public class RespuetaAlerta  implements java.io.Serializable {
     public RespuetaAlerta(
            int codigoError,
            java.lang.String dosis,
+           java.lang.String idMedicamento,
            java.lang.String medicamento,
            java.lang.String recomendacion,
            java.lang.String resultado) {
            this.codigoError = codigoError;
            this.dosis = dosis;
+           this.idMedicamento = idMedicamento;
            this.medicamento = medicamento;
            this.recomendacion = recomendacion;
            this.resultado = resultado;
@@ -72,6 +76,26 @@ public class RespuetaAlerta  implements java.io.Serializable {
      */
     public void setDosis(java.lang.String dosis) {
         this.dosis = dosis;
+    }
+
+
+    /**
+     * Gets the idMedicamento value for this RespuetaAlerta.
+     * 
+     * @return idMedicamento
+     */
+    public java.lang.String getIdMedicamento() {
+        return idMedicamento;
+    }
+
+
+    /**
+     * Sets the idMedicamento value for this RespuetaAlerta.
+     * 
+     * @param idMedicamento
+     */
+    public void setIdMedicamento(java.lang.String idMedicamento) {
+        this.idMedicamento = idMedicamento;
     }
 
 
@@ -150,6 +174,9 @@ public class RespuetaAlerta  implements java.io.Serializable {
             ((this.dosis==null && other.getDosis()==null) || 
              (this.dosis!=null &&
               this.dosis.equals(other.getDosis()))) &&
+            ((this.idMedicamento==null && other.getIdMedicamento()==null) || 
+             (this.idMedicamento!=null &&
+              this.idMedicamento.equals(other.getIdMedicamento()))) &&
             ((this.medicamento==null && other.getMedicamento()==null) || 
              (this.medicamento!=null &&
               this.medicamento.equals(other.getMedicamento()))) &&
@@ -173,6 +200,9 @@ public class RespuetaAlerta  implements java.io.Serializable {
         _hashCode += getCodigoError();
         if (getDosis() != null) {
             _hashCode += getDosis().hashCode();
+        }
+        if (getIdMedicamento() != null) {
+            _hashCode += getIdMedicamento().hashCode();
         }
         if (getMedicamento() != null) {
             _hashCode += getMedicamento().hashCode();
@@ -202,6 +232,13 @@ public class RespuetaAlerta  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("dosis");
         elemField.setXmlName(new javax.xml.namespace.QName("", "dosis"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("idMedicamento");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "idMedicamento"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
