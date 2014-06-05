@@ -1,15 +1,17 @@
 package co.themafia.backBean;
 
+
 import java.io.Serializable;
-import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -71,7 +73,7 @@ public class Configuracion implements Serializable{
 			if(resp == "principal"){
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "La configuracion ha sido realizada con exito"));  
 			}else{
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sistema informa", "Por favor verifique el numero de identificacion"));		
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sistema informa", "Por favor verifique el numero de identificacion o la fecha de envio"));		
 			}
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sistema informa", "El sistema ya esta configurado, si desea cambiar de paciente por favor reinicie el sistema"));
@@ -104,6 +106,7 @@ public class Configuracion implements Serializable{
 		paciente.setIdentificacion(p.getIdentificacion());
 		paciente.setNombre(p.getNombre());
 		paciente.setApellido(p.getApellido());
+		paciente.setFechaNacimiento(convertirFecha(p.getFechaNacimiento()));
 		paciente.setHoraSincronizacion(this.horaSincronizacion.toString());
 		ut.begin();
 		em.persist(paciente);
@@ -115,15 +118,18 @@ public class Configuracion implements Serializable{
 		Rango[] rangos = c.getRango();
 		for(int a = 0; a < rangos.length ; a ++){
 			Rango r = rangos[a];
-			Sensor sensor = new Sensor();
-			sensor.setNombreSensor(r.getSignoVital());
-			sensor.setEnfermedad(r.getEnfermedad());
-			sensor.setRangoMin(Integer.parseInt(r.getRangoMin()));
-			sensor.setRangoMax(Integer.parseInt(r.getRangoMax()));
-			sensor.setPaciente(paciente);
-			ut.begin();
-			em.persist(sensor);
-			ut.commit();
+			if(r.getCodigoError()==0){
+				Sensor sensor = new Sensor();
+				sensor.setNombreSensor(r.getSignoVital());
+				sensor.setEnfermedad(r.getEnfermedad());
+				sensor.setRangoMin(Integer.parseInt(r.getRangoMin()));
+				sensor.setRangoMax(Integer.parseInt(r.getRangoMax()));
+				sensor.setPaciente(paciente);
+				ut.begin();
+				em.persist(sensor);
+				ut.commit();
+			}
+			
 		}
 	}
 	
@@ -131,15 +137,39 @@ public class Configuracion implements Serializable{
 		Medicamento[] medicamentos = c.getMedicamento();
 		for(int a = 0; a < medicamentos.length ; a ++){
 			Medicamento m = medicamentos[a];
-			co.themafia.model.Medicamento medicina = new co.themafia.model.Medicamento();
-			medicina.setNombreMedicamento(m.getNombreMedicamento());
-			medicina.setViaAdministracion(m.getViaAdministracion());
-			medicina.setDosis(m.getDosis());
-			medicina.setFrecuencia(m.getFrecuencia());
-			medicina.setPaciente(paciente);
-			ut.begin();
-			em.persist(medicina);
-			ut.commit();				
+			if(m.getCodigoError()==0){
+				co.themafia.model.Medicamento medicina = new co.themafia.model.Medicamento();
+				medicina.setNombreMedicamento(m.getNombreMedicamento());
+				medicina.setViaAdministracion(m.getViaAdministracion());
+				medicina.setDosis(m.getDosis());
+				medicina.setFrecuencia(m.getFrecuencia());
+				medicina.setPaciente(paciente);
+				medicina.setFechaInicio(convertirFecha(m.getFechainicio()));
+				medicina.setFechaFin(convertirFecha(m.getFechaFin()));
+				ut.begin();
+				em.persist(medicina);
+				ut.commit();
+				//lanzarTareaProgramada(medicina);
+			}			
 		}
+	}
+	
+	private Date convertirFecha(String fecha) {
+		String[] datos = fecha.split("-");
+		Calendar cal = Calendar.getInstance();
+		cal.set(Integer.parseInt(datos[0]), Integer.parseInt(datos[1])-1, Integer.parseInt(datos[2]));
+		return cal.getTime();
+	}
+	
+	public void lanzarTareaProgramada(co.themafia.model.Medicamento m) {
+		Timer t = new Timer();
+		t.schedule(new tarea(), (Integer.parseInt(m.getFrecuencia()) * 3600)*1000 );
+	}
+	class tarea extends TimerTask{
+		@Override
+		public void run() {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "Es hora de tomarse el 'Paracetamol' "));
+		}
+		
 	}
 }

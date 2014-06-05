@@ -16,6 +16,8 @@ public class DatosPaciente  implements java.io.Serializable {
 
     private java.lang.String identificacion;
 
+    private java.lang.String mensage;
+
     private java.lang.String nombre;
 
     private java.lang.String telefono;
@@ -28,12 +30,14 @@ public class DatosPaciente  implements java.io.Serializable {
            int codigoError,
            java.lang.String fechaNacimiento,
            java.lang.String identificacion,
+           java.lang.String mensage,
            java.lang.String nombre,
            java.lang.String telefono) {
            this.apellido = apellido;
            this.codigoError = codigoError;
            this.fechaNacimiento = fechaNacimiento;
            this.identificacion = identificacion;
+           this.mensage = mensage;
            this.nombre = nombre;
            this.telefono = telefono;
     }
@@ -120,6 +124,26 @@ public class DatosPaciente  implements java.io.Serializable {
 
 
     /**
+     * Gets the mensage value for this DatosPaciente.
+     * 
+     * @return mensage
+     */
+    public java.lang.String getMensage() {
+        return mensage;
+    }
+
+
+    /**
+     * Sets the mensage value for this DatosPaciente.
+     * 
+     * @param mensage
+     */
+    public void setMensage(java.lang.String mensage) {
+        this.mensage = mensage;
+    }
+
+
+    /**
      * Gets the nombre value for this DatosPaciente.
      * 
      * @return nombre
@@ -180,6 +204,9 @@ public class DatosPaciente  implements java.io.Serializable {
             ((this.identificacion==null && other.getIdentificacion()==null) || 
              (this.identificacion!=null &&
               this.identificacion.equals(other.getIdentificacion()))) &&
+            ((this.mensage==null && other.getMensage()==null) || 
+             (this.mensage!=null &&
+              this.mensage.equals(other.getMensage()))) &&
             ((this.nombre==null && other.getNombre()==null) || 
              (this.nombre!=null &&
               this.nombre.equals(other.getNombre()))) &&
@@ -206,6 +233,9 @@ public class DatosPaciente  implements java.io.Serializable {
         }
         if (getIdentificacion() != null) {
             _hashCode += getIdentificacion().hashCode();
+        }
+        if (getMensage() != null) {
+            _hashCode += getMensage().hashCode();
         }
         if (getNombre() != null) {
             _hashCode += getNombre().hashCode();
@@ -246,6 +276,13 @@ public class DatosPaciente  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("identificacion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "identificacion"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("mensage");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "mensage"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

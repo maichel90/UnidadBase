@@ -56,16 +56,16 @@ public class WsGrupo3Proxy implements datos.WsGrupo3_PortType {
     return wsGrupo3_PortType.getAlerta(alerta);
   }
   
-  public java.lang.String setHistorico(datos.HistorialMedico[] historial) throws java.rmi.RemoteException{
-    if (wsGrupo3_PortType == null)
-      _initWsGrupo3Proxy();
-    return wsGrupo3_PortType.setHistorico(historial);
-  }
-  
   public datos.Consulta getConsulta(java.lang.String identificacion) throws java.rmi.RemoteException{
     if (wsGrupo3_PortType == null)
       _initWsGrupo3Proxy();
     return wsGrupo3_PortType.getConsulta(identificacion);
+  }
+  
+  public java.lang.String setHistorico(datos.HistorialMedico[] historial) throws java.rmi.RemoteException{
+    if (wsGrupo3_PortType == null)
+      _initWsGrupo3Proxy();
+    return wsGrupo3_PortType.setHistorico(historial);
   }
   
   

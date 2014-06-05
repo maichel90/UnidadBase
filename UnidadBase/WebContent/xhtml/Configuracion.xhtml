@@ -18,12 +18,12 @@
 		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 		<p:outputLabel>Identificacion Paciente:</p:outputLabel> 
 		<br/>
-		<p:inputText value="#{confBean.identificacion}"/>
+		<p:inputText value="#{confBean.identificacion}" required="yes"/>
 		<br/>
 		<br/>
 		<p:outputLabel>Hora envio registros:</p:outputLabel> 
 		<br/>
-		<p:calendar value="#{confBean.horaSincronizacion}" pattern="HH:mm" timeOnly="true" />
+		<p:calendar value="#{confBean.horaSincronizacion}" pattern="HH:mm" timeOnly="true" required="yes"/>
 		<br/>
 		<br/>
 		<p:commandButton value="Validar" actionListener="#{confBean.ValidacionUsuario}" update="formulario"/>
@@ -34,7 +34,6 @@
 		<p:outputLabel>Nombres completos : #{confBean.paciente.nombre} #{confBean.paciente.apellido}</p:outputLabel>
 		<br/><br/>
 		<p:outputLabel>Fecha nacimiento: #{confBean.paciente.fechaNacimiento}</p:outputLabel>
-
 </h:form>
 	
 </body> 

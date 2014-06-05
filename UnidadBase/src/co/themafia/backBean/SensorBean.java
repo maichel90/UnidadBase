@@ -76,7 +76,7 @@ public class SensorBean implements Serializable{
 				WsGrupo3Proxy px = new WsGrupo3Proxy();
 				RespuetaAlerta resp = px.getAlerta(alerta);
 				if(resp.getCodigoError()==0){
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "Se ha enviado la info a modulo 3 "+resp.getRecomendacion()));
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "SE HA REALIZADO EL ENVIO DE LA ALERTA "+resp.getRecomendacion()));
 				}else {
 					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sistema informa", "No se ha podido enviar la info"));
 				}
@@ -95,7 +95,7 @@ public class SensorBean implements Serializable{
 			WsGrupo3Proxy px = new WsGrupo3Proxy();
 			RespuetaAlerta resp = px.getAlerta(alerta);
 			if(resp.getCodigoError()==0){
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "Se ha enviado la info a modulo 3 "+resp.getRecomendacion()));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sistema informa", "SE HA REALIZADO EL ENVIO DE LA ALERTA "+resp.getRecomendacion()));
 			}else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sistema informa", "No se ha podido enviar la info"));
 			}
